@@ -3,11 +3,9 @@ import http from 'http';
 
 const server = http.createServer(function(request: any, response: any) {
     console.log((new Date()) + ' Received request for ' + request.url);
-    response.end("hi there");
 });
 
 const wss = new WebSocketServer({ server });
-let client=0;
 
 wss.on('connection', function connection(ws) {
   ws.on('error', console.error);
@@ -19,8 +17,6 @@ wss.on('connection', function connection(ws) {
       }
     });
   });
-  client++;
-  ws.send(`hello from client${client}`)
   ws.send('Hello! Message From Server!!');
 });
 
